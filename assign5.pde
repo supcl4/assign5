@@ -59,8 +59,7 @@ boolean rightPressed = false;
 void setup () {    
   size (640,480) ;
   frameRate(60);
-    
- 
+     
   
   st2 = loadImage ("img/start2.png");
   st1 = loadImage ("img/start1.png");  
@@ -81,10 +80,11 @@ void setup () {
   gameState = GAME_START;
   enemyState = C;
   hpline = 40; 
+  fighterX = 589 ;
+  fighterY = 240 ; 
   treasureX = floor( random(65, 600) );
   treasureY = floor( random(65, 400) );
-  fighterX = width -65 ;
-  fighterY = height / 2 ; 
+
 
   //speed
   fighterSpeed = 10;
@@ -99,7 +99,6 @@ void setup () {
     hitPosition[i][1] = 1200;
   }
   
-
   //enemy line
   spacingX = 0;  
   spacingY = -70; 
@@ -154,13 +153,13 @@ void draw() {
       if (leftPressed && fighterX > 0) {
         fighterX -= fighterSpeed ;
       }
-      if (rightPressed && fighterX < 640 - 51) {
+      if (rightPressed && fighterX < 589) {
         fighterX += fighterSpeed ;
       }  
       if (upPressed && fighterY > 0) {
         fighterY -= fighterSpeed ;
       }
-      if (downPressed && fighterY < 480 - 51) {
+      if (downPressed && fighterY < 429) {
         fighterY += fighterSpeed ;
       }
         
@@ -177,8 +176,8 @@ void draw() {
       //flame buring
       if(flameNum > 31){
         for (int j = 0; j < 5; j ++){
-          hitPosition[j][0] = 1000;
-          hitPosition[j][1] = 1000;
+          hitPosition[j][0] = 1200;
+          hitPosition[j][1] = 1200;
         }
       }   
       
@@ -240,7 +239,7 @@ void draw() {
           }
           
           //to B
-          if (enemyC [enemyC.length-1][0] > 640+120 ) {        
+          if (enemyC [enemyC.length-1][0] > 800 ) {        
             enemyY = floor(random(35,260));            
             spacingX = 0;  
             for (int s = 0; s < 5; s++){
@@ -300,7 +299,7 @@ void draw() {
           }
           
           //to A
-          if (enemyB [4][0] > 640 + 120){
+          if (enemyB [4][0] > 800){
             enemyY = floor( random(210,300) );
             enemyState = A;            
             spacingX = 0;  
@@ -380,7 +379,7 @@ void draw() {
           }
           
           //to C
-          if(enemyA [4][0] > 640 + 300 ){
+          if(enemyA [4][0] > 800 ){
             enemyY = floor(random(80,425));
             spacingX = 0;       
           for (int i = 0; i < 5; i++ ){
@@ -400,12 +399,12 @@ void draw() {
       image(hp,10,10); 
       
      //get treasure
-      if(fighterX >= treasureX - fighter.width && fighterX <= treasureX + treasure.width
-         && fighterY >= treasureY - fighter.height && fighterY <= treasureY + treasure.height){    
-              hpline += 20;
-              treasureX = floor(random(50,600));         
-              treasureY = floor(random(50,420));
-      }
+     if(treasureX+41>=fighterX && treasureX<=fighterX+51 && treasureY+41>=fighterY && treasureY<=fighterY+51){
+     hpline+=20;
+     treasureX=int(random(580));
+     treasureY=int(random(430));
+     
+ }
       if(hpline >= 200){
         hpline = 200;
       }
@@ -420,8 +419,8 @@ void draw() {
       if (mouseX >= width/3 && mouseX <= 2*width/3 && mouseY >=315 && mouseY <=350){
             image(ed1, 0, 0);
       if(mousePressed){
-       treasureX = floor( random(70,590) );
-       treasureY = floor( random(45,425) );      
+       treasureX = int(random(580));
+       treasureY = int(random(430));    
        enemyState = 0;      
        spacingX = 0;       
             
