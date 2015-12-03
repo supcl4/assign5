@@ -347,7 +347,7 @@ void draw() {
                 }
                 
                 enemyA [i][1] = -1200;
-                enemyY = floor( random(45,260));
+                enemyY = floor( random(45,240));
                 bulletNumlimit[j] = false;
                 flameNum = 0; 
                 scoreChange(20);
